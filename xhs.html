@@ -1,0 +1,93 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+	<meta charset="UTF-8"> 
+	<meta name="viewport"
+		content="width=device-width, 
+				initial-scale=1.0"> 
+	<title>Read more read less button</title> 
+	<style>
+        /* style.css */
+h1 { 
+	color: green; 
+} 
+
+h3 { 
+	color: rgb(129, 25, 25); 
+	font: 25px; 
+	font-weight: 700; 
+} 
+
+.mybox1 { 
+	display: none; 
+} 
+
+button { 
+	padding: 10px; 
+	font-size: 20px; 
+	font-weight: 700; 
+	color: rgb(5, 14, 5); 
+	border: none; 
+	border-radius: 30px; 
+	background-color: rgb(182, 215, 182); 
+	margin-top: 20px; 
+} 
+
+div, 
+span { 
+	font-size: 20px; 
+}
+
+    </style>
+</head> 
+
+<body> 
+	<h1>GeeksforGeeks</h1> 
+	<h3>A "read more - read less" 
+		button using JavaScript and CSS 
+		display block property. 
+	</h3> 
+	<div class="mybox"> 
+		<div> 
+			A data structure is not only used 
+			for organizing the data. It is also 
+			used for processing, retrieving, and 
+			storing data. 
+			<span class="mybox1" id="mybox1id"> 
+				There are different basic and advanced 
+				types of data structures that are used 
+				in almost every program or software 
+				system that has been developed. 
+				So we must have good knowledge about 
+				data structures. 
+			</span> 
+		</div> 
+		<button id="mybuttonid"
+				onclick="changeReadMore()"> 
+			Read More 
+		</button> 
+	</div> 
+
+<script>
+// script.js 
+function changeReadMore() { 
+	const mycontent = 
+		document.getElementById('mybox1id'); 
+	const mybutton = 
+		document.getElementById('mybuttonid'); 
+
+	if (mycontent.style.display === 'none'
+		|| mycontent.style.display === '') { 
+		mycontent.style.display = 'block'; 
+		mybutton.textContent = 'Read Less'; 
+	} else { 
+		mycontent.style.display = 'none'; 
+		mybutton.textContent = 'Read More'; 
+	} 
+}
+
+</script>
+</body> 
+
+</html>

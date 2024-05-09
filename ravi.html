@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="contact-form">
+        <label for="first-name">Name:</label><br>
+        <input type="text" id="first-name" name="first-name"><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br><br>
+
+        <label for="subject">Services:</label><br>
+        <input type="text" id="subject" name="subject"><br><br>
+
+        <label for="number">Number:</label><br>
+        <input type="text" id="number" name="number"><br><br>
+
+        <label for="description">Message:</label><br>
+        <textarea id="description" name="description"></textarea><br><br>
+
+        <input type="submit" value="Submit" id="submit-btn">
+    </form>
+
+    <div id="popup" class="popup">
+        <span class="popup-content">Thank you! Your form has been successfully submitted.</span>
+    </div>
+
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Send email
+            Email.send({
+                SecureToken: "fb971397-8028-48d5-be7e-1d188f791392",
+                Username: "Socialcultsleads@gmail.com",
+                Password: "E0B25C994A42E179F550298C1F00B5218D1F",
+                To: 'Socialcultsleads@gmail.com',
+                From: 'Socialcultsleads@gmail.com',
+                Subject: "New contact form enquiry",
+                Body: "Please find the below enquiry details received:<br><br>" +
+                    "Name: " + document.getElementById("first-name").value + "<br>" +
+                    "Email: " + document.getElementById("email").value + "<br>" +
+                    "Services: " + document.getElementById("subject").value + "<br>" +
+                    "Number: " + document.getElementById("number").value + "<br>" +
+                    "Message: <br>" + document.getElementById("description").value.replace(/\n/g, '<br>')
+            }).then(function(message) {
+                // Display popup message after successful submission
+                document.getElementById("popup").style.display = "block";
+                // Reset form fields
+                document.getElementById("contact-form").reset();
+            }).catch(function(error) {
+                // Handle errors here
+                console.error("Error:", error);
+                alert("An error occurred while submitting the form. Please try again later.");
+            });
+        });
+
+        // Close popup when clicked outside
+        document.addEventListener("click", function(event) {
+            var popup = document.getElementById("popup");
+            if (event.target === popup) {
+                popup.style.display = "none";
+            }
+        });
+    </script>
+</body>
+
+</html>
